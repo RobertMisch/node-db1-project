@@ -20,6 +20,18 @@ router.get('/', (req, res) => {
     //respond with the posts and 200
 });
 
+router.get('/', (req, res) => {
+    
+    db.select('*').from('accounts')
+        .then(accounts => {
+            res.status(200).json({ data: accounts })
+        })
+        .catch(error => {
+            console.log(error)
+            res.status(500).json({ message: error.message })
+        })
+});
+
 // router.get('/:id', (req, res) => {
     //mine
     // db.select('*').from('posts').where('id', req.params.id)
